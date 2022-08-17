@@ -21,7 +21,8 @@ myHeaders.append("Access-Control-Allow-Origin", "*");
                     <div className="card-body">
                     <h5 className="card-title">{props.id}</h5>
                     <h6 className="card-subtitle mb-2 text-muted">{props.meter_title}</h6>
-                    <a href={"/Dashboard/"+props.id+"/"+props.meter_title+"/"} className="card-link">Redirect to details</a>
+                    <a href={"/Dashboard/"+props.id+"/"+props.meter_title+"/"} className="card-link">Redirect to details in ui view</a>
+                    <a href={"http://127.0.0.1:5000/meters/"+props.id} className="card-link">Redirect to details in json view</a>
                     </div>
                 </div>);
                 }

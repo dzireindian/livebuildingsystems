@@ -5,8 +5,9 @@ from flask import Flask
 import flask
 
 app = Flask(__name__)
-cors = CORS(app, resources={r"/foo": {"origins": "*"}})
-app.config['CORS_HEADERS'] = 'Content-Type'
+CORS(app)
+# cors = CORS(app, resources={r"/foo": {"origins": "*"}})
+# app.config['CORS_HEADERS'] = 'Content-Type'
 
 DATABASE = 'database.db'
 
@@ -33,13 +34,15 @@ def close_connection(exception):
         db.close()
 
 @app.route('/', methods=['GET', 'POST'])
-@cross_origin(origin='localhost',headers=['Content- Type','Authorization'])
+@cross_origin()
+#@cross_origin(origin='localhost',headers=['Content- Type','Authorization'])
 def hello():
     print("in home route")
     return 'Hello, World!'
 
 @app.route('/meters/', methods=['GET'])
-@cross_origin(origin='localhost',headers=['Content- Type','Authorization'])
+@cross_origin()
+#@cross_origin(origin='localhost',headers=['Content- Type','Authorization'])
 def meter():
     try:
         meters_list = query_meter_db('select distinct * from meters')
@@ -48,6 +51,7 @@ def meter():
         response = flask.jsonify({"result":meters_list})
         response.headers.add('Access-Control-Allow-Origin', '*')
         return response
+        # return {"result":meters_list}
     except Exception as e:
         return {"result":str(e)}
 
@@ -61,6 +65,7 @@ def meter_data(meter_id):
         response = flask.jsonify({"result":meters_list})
         response.headers.add('Access-Control-Allow-Origin', '*')
         return response
+        # return {"result":meters_list}
     except Exception as e:
         return {"result":str(e)}
 
@@ -69,4 +74,4 @@ if __name__ == '__main__':
  
     # run() method of Flask class runs the application
     # on the local development server.
-    app.run()
+    app.run(host="0.0.0.0", port="5000", debug=True)
