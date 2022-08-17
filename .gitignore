@@ -1,0 +1,19 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+/meterui/node_modules
+/meterui/*.pnp
+/meterui/*.pnp.js
+# testing
+/meterui/coverage
+# production
+/meterui/build
+# misc
+/meterui/.DS_Store
+/meterui/*.env.local
+/meterui/*.env.development.local
+/meterui/*.env.test.local
+/meterui/*.env.production.local
+/meterui/npm-debug.log*
+/meterui/yarn-debug.log*
+/meterui/yarn-error.log*
